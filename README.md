@@ -1,2 +1,10 @@
 # FlaskWebServerWithGUI
-Combines several of the last skills into one project.
+Combines several of the last skills into one more complex web server with a graphical user interface. The point of this program is to simulate a vaccination passport system for Virginia Tech. This would allow the school to see whether people entering or leaving are vaccinated and perform contact tracing based off the data. If this were to be put into practice, it would require users to access the Web GUI via their phones or computers and input whether they are vaccinated or not before entering an area. The web page allows the users to enter their name, location they want to enter, whether they are entering or exiting a builing, and whether they are vaccinated or not. There is a second web page for an adminstrator that allows them to see the message the students post and query a persistent storage database for information.
+
+Track Server:
+
+A simple flask web server that provides an html template with buttons and text boxes for user input. No user authentication is required. This server creates and sets up several exchanges and queues for an AMQP server. The main function of this program is to collect user posts to this servers web page and route them to the correct AMQP queue to be consumed by the controller server. This web page displays messages for successful submissions or invalid submissions.
+
+Controller Server:
+
+Another simple flask web server that provides an html template with buttons and text boxes for the administrators (users of the web page) to consume the AMQP messages the users post and query the persistent database. The template requires the administrator to press the consume button to consume any AMQP messages sent to the server. The program then stores the messages in a mongoDB database for tracking. The other functionality of this web page is that it allows an adminstrator (user) to query the persistent storage for information. An adminstrator can ask for specific names, all entrants at a certain location, or entrants with a certain status and returns a table of all matching submissions.
