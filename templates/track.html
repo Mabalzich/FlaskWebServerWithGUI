@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple login form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 15px;
+      }
+      form {
+      border: 5px solid #f1f1f1;
+      }
+      input[type=text], input[type=password] {
+      width: 100%;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      }
+      button {
+      background-color: #8ebf42;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: grabbing;
+      width: 100%;
+      }
+      h1 {
+      text-align:center;
+      fone-size:18;
+      }
+      button:hover {
+      opacity: 0.8;
+      }
+      .formcontainer {
+      text-align: left;
+      margin: 24px 50px 12px;
+      }
+      .container {
+      padding: 16px 0;
+      text-align:left;
+      }
+      span.psw {
+      float: right;
+      padding-top: 0;
+      padding-right: 15px;
+      }
+      /* Change styles for span on extra small screens */
+      @media screen and (max-width: 300px) {
+      span.psw {
+      display: block;
+      float: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/track">
+      <h1>COVID Tracker</h1>
+      <div class="formcontainer">
+      <hr/>
+      <div class="container">
+        <label for="name"><strong>Full Name</strong></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+        <div class="container">
+              <label for="location"><strong>Location</strong></label> 
+              <select id="location" name="location" required>
+                <option value=""></option>
+                <option value="Squires">Squires</option>
+                <option value="Goodwin">Goodwin</option>
+                <option value="Library">Library</option>
+                <option value="Surge">Surge</option>
+                <option value="Torgerson">Torgerson</option>
+              </select>
+            </div>
+         <div class="container">
+              <label for="status"><strong>Are you entering or exiting?</strong></label>
+              <div class="status">
+                <input type="radio" value="entering" id="entering" name="status" required/>
+                <label for="entering" class="radio">Entering</label>
+                <input type="radio" value="exiting" id="exiting" name="status" required/>
+                <label for="exiting" class="radio">Exiting</label>
+              </div>
+            </div>
+        <div class="container">
+              <label for="psp"><strong>Do you have a passport?</strong></label>
+              <div class="psp">
+                <input type="radio" value="yes" id="yes" name="psp" required/>
+                <label for="yes" class="radio">Yes</label>
+                <input type="radio" value="no" id="no" name="psp" required/>
+                <label for="no" class="radio">No</label>
+              </div>
+            </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+	{% block body %}{% endblock %}
+</html>
